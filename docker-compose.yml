@@ -1,0 +1,32 @@
+version: '3'
+services:
+    toolbox:
+        image: node:lts
+        container_name: rnm-toolbox
+        working_dir: /app/redux-nested-modules
+        volumes:
+            - .:/app/redux-nested-modules:z
+        networks:
+            - default
+        command: bash -c "rm -rf .toolbox_started && yarn && yarn build:libs && touch .toolbox_started && yarn watch:libs"
+
+    example:
+        image: node:lts
+        container_name: rnm-example
+        working_dir: /app/redux-nested-modules/packages/example-observable
+        depends_on:
+            - toolbox
+        stdin_open: true
+        ports:
+            - 80:3000
+        volumes:
+            - .:/app/redux-nested-modules:z
+            - ./.docker/wait-for-file.sh:/bin/wait-for-file:ro
+        networks:
+            - default
+        entrypoint: ['/bin/wait-for-file', '/app/redux-nested-modules/.toolbox_started']
+        command: yarn start
+
+networks:
+    default:
+        driver: bridge

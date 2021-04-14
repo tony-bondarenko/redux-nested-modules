@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -u -e -o xtrace
+
+ROOT_PATH=$(dirname "$(dirname "$(realpath -s "$0")")")
+
+find $ROOT_PATH -type f -name 'yarn-error.log' -exec rm -rf {} +
+find $ROOT_PATH -type f -name 'package-lock.json' -exec rm -rf {} +
+find $ROOT_PATH -name "node_modules" -type d -prune -exec rm -rf '{}' +
+find $ROOT_PATH -name "dist" -type d -prune -exec rm -rf '{}' +
+find $ROOT_PATH -name "build" -type d -prune -exec rm -rf '{}' +
