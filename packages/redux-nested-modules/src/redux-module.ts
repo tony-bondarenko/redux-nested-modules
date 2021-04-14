@@ -41,7 +41,10 @@ export abstract class ReduxModule<
         this.parent = parent;
 
         if (this.sliceFactory) {
-            reducerRegistry.injectReducers([...this.getAbsolutePath(), ReduxModule.MODULE_NODE], this.getReducer());
+            reducerRegistry.injectReducers(
+                [...this.getAbsolutePath(), ReduxModule.MODULE_NODE],
+                this.getReducer()
+            );
         }
         if (this.epicFactory) {
             epic$.next(this.getEpic());
