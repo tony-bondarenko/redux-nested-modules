@@ -33,12 +33,6 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "eject": "react-scripts eject"
     },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
     "browserslist": {
         "production": [
             ">0.2%",

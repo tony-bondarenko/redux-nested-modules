@@ -12,6 +12,8 @@ export abstract class ReduxModule<
     Selectors = any,
     State = ExtractSliceState<Slice>
 > {
+    protected static readonly MODULE_NODE = '@@module';
+
     isRegistered = false;
 
     protected moduleName?: string;
@@ -39,7 +41,7 @@ export abstract class ReduxModule<
         this.parent = parent;
 
         if (this.sliceFactory) {
-            reducerRegistry.injectReducers(this.getAbsolutePath(), this.getReducer());
+            reducerRegistry.injectReducers([...this.getAbsolutePath(), ReduxModule.MODULE_NODE], this.getReducer());
         }
         if (this.epicFactory) {
             epic$.next(this.getEpic());
@@ -97,7 +99,7 @@ export abstract class ReduxModule<
 
     rootSelector: Selector<any, State> = state => {
         let resultState = state;
-        for (const path of this.getAbsolutePath()) {
+        for (const path of [...this.getAbsolutePath(), ReduxModule.MODULE_NODE]) {
             if (!resultState[path]) {
                 return undefined;
             }

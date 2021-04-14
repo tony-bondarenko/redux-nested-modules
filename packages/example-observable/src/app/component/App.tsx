@@ -36,7 +36,7 @@ const App: React.FC = () => {
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/projects">Project Manager</Link>
+                    <Link to="/projects">Projects</Link>
                 </li>
             </ul>
             <hr />

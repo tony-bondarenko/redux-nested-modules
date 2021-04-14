@@ -1,0 +1,29 @@
+{
+    "extends": ["../../.eslintrc", "react-app"],
+    "parserOptions": {
+        "project": "./tsconfig.json",
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "jest": true
+    },
+    "settings": {
+        "react": {
+            "version": "latest"
+        }
+    },
+    "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off", // allow infer of function returns
+        "no-param-reassign": ["error", {"props": false}], // allow state mutation in epics
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true,
+                "optionalDependencies": false,
+                "peerDependencies": false,
+                "bundledDependencies": false
+            }
+        ]
+    }
+}

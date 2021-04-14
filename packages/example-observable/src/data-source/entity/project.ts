@@ -1,6 +1,8 @@
-import {Todo} from "./todo";
+import {Todo} from './todo';
 
 export class Project {
-    public name?: string;
-    public todos?: Todo[];
+    id?: string;
+    todos?: Todo[];
+
+    constructor(public name: string) {}
 }
