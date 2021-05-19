@@ -1,6 +1,6 @@
 {
     "name": "redux-nested-modules",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Nested Redux modules with code splitting and hot reload support for Typescript",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
